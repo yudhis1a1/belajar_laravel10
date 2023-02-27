@@ -94,11 +94,81 @@
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
-                            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i
-                                    class="fa fa-plus-circle"></i>
-                                Tambah Data Mhs</button>
+                            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"
+                                alt="Tambah Data Mahasiswa" data-toggle="modal" data-target="#tambah_mhs"><i
+                                    class="fa fa-plus-circle"></i>Tambah
+                                Data Mhs</button>
+
+                            {{-- <a type="button" href="{{ url('form_tambah_mhs') }}"
+                                class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i>Tambah
+                                Data Mhs</a> --}}
                         </div>
                     </div>
+
+                    {{-- modal tambah mhs --}}
+                    <div id="tambah_mhs" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form method="POST" action="{{ url('mhs') }}">
+                                    @csrf
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Tambah Data Mahasiswa</h4>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-hidden="true">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="control-label">NIM:</label>
+                                            <input type="text" class="form-control" name="nim">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nama:</label>
+                                            <input type="text" class="form-control" name="nama">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Jenis Kelamin:</label>
+                                            <select name="gender" class="form-control">
+                                                <option value="">=Pilih=</option>
+                                                <option value="M">Laki-laki</option>
+                                                <option value="F">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Alamat:</label>
+                                            <textarea name="alamat" class="form-control"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Email:</label>
+                                            <input type="email" class="form-control" name="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">HP:</label>
+                                            <input type="number" class="form-control" name="hp">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default waves-effect"
+                                            data-dismiss="modal">Batal</button>
+                                        <button type="submit"
+                                            class="btn btn-danger waves-effect waves-light">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- akhir modal tambah mhs  --}}
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -112,23 +182,29 @@
                                         cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>NIM</th>
                                                 <th>Nama</th>
                                                 <th>Jenis<br>Kelamin</th>
                                                 <th>Alamat</th>
                                                 <th>Email</th>
+                                                <th>HP</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                            </tr>
+                                            @foreach ($mhs as $m)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $m->nim }}</td>
+                                                    <td>{{ $m->nama }}</td>
+                                                    <td>{{ $m->gender == 'M' ? 'Laki-laki' : 'Perempuan' }}</td>
+                                                    <td>{{ $m->alamat }}</td>
+                                                    <td>{{ $m->email }}</td>
+                                                    <td>{{ $m->hp }}</td>
+                                                    <td></td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

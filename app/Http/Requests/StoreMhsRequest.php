@@ -11,7 +11,7 @@ class StoreMhsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreMhsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nim' => 'required',
+            'nama' => 'required',
+            'email' => 'required',
+            'alamat' => 'required',
+            'hp' => 'required',
         ];
     }
 }

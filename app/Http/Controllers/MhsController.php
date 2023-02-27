@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mhs;
 use App\Http\Requests\StoreMhsRequest;
 use App\Http\Requests\UpdateMhsRequest;
+use Illuminate\Auth\Events\Validated;
 
 class MhsController extends Controller
 {
@@ -13,15 +14,9 @@ class MhsController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('mhs')->with([
+            'mhs' => Mhs::all()
+        ]);
     }
 
     /**
@@ -29,7 +24,7 @@ class MhsController extends Controller
      */
     public function store(StoreMhsRequest $request)
     {
-        //
+        $validate = $request->validated();
     }
 
     /**

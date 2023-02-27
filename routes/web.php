@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MhsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,8 @@ Route::get('/home', function () {
 Route::get('/mhs', function () {
     return view('mhs');
 });
+
+Route::get('/form_tambah_mhs', function () {
+    return view('form_tambah_mhs');
+});
+Route::resource('mhs', MhsController::class);
