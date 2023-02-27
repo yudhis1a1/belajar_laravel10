@@ -115,7 +115,7 @@
 
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Nama:</label>
+                                        <label class="control-label">Nama lengkap:</label>
                                         <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                             name="nama" value="{{ old('nama') }}">
                                         @error('nama')
