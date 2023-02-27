@@ -101,24 +101,28 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
                                 <form method="POST" action="{{ url('mhs') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label class="control-label">NIM:</label>
-                                        <input type="text" class="form-control" name="nim">
+                                        <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                                            name="nim" value="{{ old('nim') }}">
+                                        @error('nim')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Nama:</label>
-                                        <input type="text" class="form-control" name="nama">
+                                        <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                            name="nama" value="{{ old('nama') }}">
+                                        @error('nama')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Jenis Kelamin:</label>

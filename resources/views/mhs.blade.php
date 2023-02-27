@@ -94,14 +94,14 @@
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
-                            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"
+                            {{-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15"
                                 alt="Tambah Data Mahasiswa" data-toggle="modal" data-target="#tambah_mhs"><i
                                     class="fa fa-plus-circle"></i>Tambah
-                                Data Mhs</button>
+                                Data Mhs</button> --}}
 
-                            {{-- <a type="button" href="{{ url('form_tambah_mhs') }}"
+                            <a type="button" href="{{ url('form_tambah_mhs') }}"
                                 class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i>Tambah
-                                Data Mhs</a> --}}
+                                Data Mhs</a>
                         </div>
                     </div>
 
@@ -120,7 +120,8 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label class="control-label">NIM:</label>
-                                            <input type="text" class="form-control" name="nim">
+                                            <input type="text"
+                                                class="form-control @error('nim') is-invalid @enderror" name="nim">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Nama:</label>

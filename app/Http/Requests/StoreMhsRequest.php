@@ -22,7 +22,7 @@ class StoreMhsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nim' => 'required',
+            'nim' => 'required|unique:mhs,nim|min:7|max:10',
             'nama' => 'required',
             'email' => 'required',
             'alamat' => 'required',
